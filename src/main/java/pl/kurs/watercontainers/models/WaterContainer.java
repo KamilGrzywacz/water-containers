@@ -3,9 +3,10 @@ package pl.kurs.watercontainers.models;
 import pl.kurs.watercontainers.exceptions.InvalidCapacityException;
 import pl.kurs.watercontainers.exceptions.InvalidLevelException;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class WaterContainer {
+public class WaterContainer implements Serializable, Comparable<WaterContainer> {
 
     private String name;
     private double maxCapacity;
@@ -16,8 +17,6 @@ public class WaterContainer {
         this.maxCapacity = maxCapacity;
         this.waterLevel = waterLevel;
     }
-
-
 
 
     public static WaterContainer create(String name, double maxCapacity, double waterLevel) {
@@ -55,10 +54,22 @@ public class WaterContainer {
 
     @Override
     public String toString() {
-        return "WaterContainer{" +
+        return getClass().getSimpleName() +"{" +
                 "name='" + name + '\'' +
                 ", maxCapacity=" + maxCapacity +
                 ", waterLevel=" + waterLevel +
                 '}';
+    }
+
+    @Override
+    public int compareTo(WaterContainer o) {
+        int result = Double.compare(o.waterLevel, waterLevel);
+        if (result == 0) {
+            result = Double.compare(o.maxCapacity, maxCapacity);
+        }
+        if (result == 0) {
+            result = name.compareTo(o.name);
+        }
+        return result;
     }
 }
