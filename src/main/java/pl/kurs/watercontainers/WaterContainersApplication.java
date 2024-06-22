@@ -12,6 +12,12 @@ public class WaterContainersApplication {
 
         WaterContainer waterContainer = WaterContainer.create("Beczka",100,50);
         System.out.println(waterContainer);
+
+
+        waterContainer.addWater(50);
+        System.out.println(waterContainer);
+
+
     }
 
 }
