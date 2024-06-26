@@ -55,7 +55,7 @@ public class WaterContainer implements Serializable, Comparable<WaterContainer> 
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() +"{" +
+        return getClass().getSimpleName() + "{" +
                 "name='" + name + '\'' +
                 ", maxCapacity=" + maxCapacity +
                 ", waterLevel=" + waterLevel +
@@ -75,14 +75,25 @@ public class WaterContainer implements Serializable, Comparable<WaterContainer> 
     }
 
 
-    public void addWater(double value){
-        if(value <= 0){
+    public void addWater(double value) {
+        if (value <= 0) {
             throw new InvalidWaterAmountException("Value should be more than 0!");
         }
-        if(waterLevel + value > maxCapacity){
+        if (waterLevel + value > maxCapacity) {
             throw new InvalidWaterAmountException("Too much water to add!");
         }
         waterLevel += value;
+    }
+
+    public void pourOutWater(double value) {
+        if (value <= 0) {
+            throw new InvalidLevelException("Value should be more than zero");
+        }
+        if (waterLevel - value < 0) {
+            throw new InvalidWaterAmountException("Too much water to subtract");
+        }
+        waterLevel -= value;
+
 
     }
 
