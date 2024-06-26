@@ -93,6 +93,11 @@ public class WaterContainer implements Serializable, Comparable<WaterContainer> 
             throw new InvalidWaterAmountException("Too much water to subtract");
         }
         waterLevel -= value;
+    }
+
+    public void pourWater(WaterContainer destination, double value){
+            this.pourOutWater(value);
+            destination.addWater(value);
 
 
     }
