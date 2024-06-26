@@ -19,13 +19,16 @@ public class WaterContainersApplication {
 
 
         List<WaterContainer> waterContainerList = Arrays.asList(
-                WaterContainer.create("Beczka 1", 200, 50),
-                WaterContainer.create("Beczka 2", 400, 10),
+                WaterContainer.create("Beczka 1", 200, 180),
+                WaterContainer.create("Beczka 2", 400, 200),
                 null
         );
         WaterContainerService waterContainerService = new WaterContainerService();
-        System.out.println(waterContainerService.findTheMostFilledContainer(null).orElseThrow());
+        System.out.println(waterContainerService.findTheMostFilledContainer(null));
+
+        System.out.println(waterContainerService.findTheMostPercentageFilledContainer(waterContainerList));
     }
+
 
 
 }

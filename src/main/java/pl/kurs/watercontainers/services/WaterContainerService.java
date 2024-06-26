@@ -15,6 +15,12 @@ public class WaterContainerService {
                .max(Comparator.comparingDouble(WaterContainer::getWaterLevel));
     }
 
-
+    public Optional<WaterContainer> findTheMostPercentageFilledContainer(List<WaterContainer> waterContainerList){
+        return Optional.ofNullable(waterContainerList)
+                .orElseGet(Collections::emptyList)
+                .stream()
+                .filter(Objects::nonNull)
+                .max(Comparator.comparingDouble(c -> c.getWaterLevel() / c.getMaxCapacity()));
+    }
 
 }
